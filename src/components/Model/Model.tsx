@@ -8,16 +8,12 @@ import { yellowImg } from "@/utils";
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import { View } from "@react-three/drei";
-import { models } from "@/constants";
-
-
-
-
+import { models, sizes } from "@/constants";
+import { label } from "three/webgpu";
 
 const Model = () => {
-    
   const [size, setSize] = useState("small");
-  const [model, setModel] = useState<typeof models[number]>({
+  const [model, setModel] = useState<(typeof models)[number]>({
     id: 1,
     title: "Iphone 15 Pro in Natural Titanium",
     color: ["#8F8A81", "#ffe7b9", "#6f6c64"],
@@ -91,12 +87,27 @@ const Model = () => {
                     key={i}
                     className="w-6 h-6 rounded-full mx-2 cursor-pointer"
                     style={{
-                      backgroundColor: item.color[0]
+                      backgroundColor: item.color[0],
                     }}
                     onClick={() => setModel(item)}
                   />
                 ))}
               </ul>
+              <button className="size-btn-container">
+                {sizes.map(({ label, value }) => (
+                  <span
+                    key={label}
+                    className="size-btn cursor-pointer"
+                    style={{
+                      backgroundColor: size === value ? "white" : "transparent",
+                      color: size === value ? "black" : "white",
+                    }}
+                    onClick={() => setSize(value)}
+                  >
+                    {label}
+                  </span>
+                ))}
+              </button>
             </div>
           </div>
         </div>

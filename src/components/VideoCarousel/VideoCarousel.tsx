@@ -23,10 +23,11 @@ const VideoCarousel = () => {
   const { isEnd, startPlay, videoId, isLastVideo, isPlaying } = video;
 
   useGSAP(() => {
-
     gsap.to("#slider", {
-      transform: `translateX(${-100 * videoId}%)`, duration: 2, ease: "power1.inOut"
-    })
+      transform: `translateX(${-100 * videoId}%)`,
+      duration: 2,
+      ease: "power1.inOut",
+    });
 
     gsap.to("video", {
       scrollTrigger: {
@@ -98,7 +99,10 @@ const VideoCarousel = () => {
       }
 
       const animUpdate = () => {
-        anim.progress(videoRef.current[videoId].currentTime / hightlightsSlides[videoId].videoDuration);
+        anim.progress(
+          videoRef.current[videoId].currentTime /
+            hightlightsSlides[videoId].videoDuration
+        );
       };
       if (isLastVideo) {
         gsap.ticker.add(animUpdate);
@@ -133,12 +137,12 @@ const VideoCarousel = () => {
           isPlaying: !prevVideo.isPlaying,
         }));
         break;
-        case "pause":
-          setVideo((prevVideo) => ({
-            ...prevVideo,
-            isPlaying: !prevVideo.isPlaying,
-          }));
-          break;
+      case "pause":
+        setVideo((prevVideo) => ({
+          ...prevVideo,
+          isPlaying: !prevVideo.isPlaying,
+        }));
+        break;
       default:
         return video;
     }
@@ -155,7 +159,9 @@ const VideoCarousel = () => {
                   playsInline={true}
                   preload="auto"
                   muted
-                  className={`${list.id === 2 && 'translate-x-44'}pointer-events-none`}
+                  className={`${
+                    list.id === 2 && "translate-x-44"
+                  }pointer-events-none`}
                   ref={(el: HTMLVideoElement | null) => {
                     if (el) {
                       videoRef.current[i] = el;
@@ -167,7 +173,11 @@ const VideoCarousel = () => {
                   onPause={() => {
                     setVideo({ ...video, isPlaying: false });
                   }}
-                  onEnded={() => {i !== 3 ? handleProcess("video-end", i) : handleProcess("video-last", i) }}
+                  onEnded={() => {
+                    i !== 3
+                      ? handleProcess("video-end", i)
+                      : handleProcess("video-last", i);
+                  }}
                   onLoadedMetadata={(e) => handleLoadedMetaData(i, e)}
                 >
                   <source src={list.video} type="video/mp4" />
@@ -212,16 +222,9 @@ const VideoCarousel = () => {
           <Image
             src={isLastVideo ? replayImg : !isPlaying ? playImg : pauseImg}
             alt={isLastVideo ? "Replay" : !isPlaying ? "Play" : "Pause"}
-            aria-label={
-              isLastVideo
-                ? "Replay video"
-                : !isPlaying
-                ? "Play video"
-                : "Pause video"
-            }
             onClick={
               isLastVideo
-                ? () => handleProcess("video-reset", 0)
+                ? () => handleProcess("video-reset", videoId)
                 : !isPlaying
                 ? () => handleProcess("play", videoId)
                 : () => handleProcess("pause", videoId)
