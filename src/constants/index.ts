@@ -54,16 +54,20 @@ import { StaticImageData } from 'next/image';
     id: number = 0;
     title: string;
     color: string[];
-    img: Buffer | StaticImageData; // Use Buffer for images from the filesystem, StaticImageData for images loaded from the filesystem or a CDN
+    img: Buffer | StaticImageData;
   
-    constructor(title: string, color: string[], img: Buffer | StaticImageData) {
+    constructor(
+      title: string,
+      color: string[],
+      img: Buffer | StaticImageData
+    ) {
       this.title = title;
       this.color = color;
       this.img = img;
     }
   }
   
-  export const models : Models[] = [
+  export const models: Models[] = [
     {
       id : 1,
       title: "iPhone 15 Pro in Natural Titanium",
