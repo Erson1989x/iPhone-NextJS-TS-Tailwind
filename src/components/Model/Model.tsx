@@ -72,6 +72,7 @@ const Model = () => {
                 bottom: "0",
                 right: "0",
                 overflow: "hidden",
+                pointerEvents: "none",
               }}
               eventSource={document.getElementById("root")! as HTMLElement}
             >

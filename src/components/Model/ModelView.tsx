@@ -39,7 +39,7 @@ const ModelView: React.FC<ModelViewProps> = ({
         enablePan={false}
         rotateSpeed={0.5}
         target={new THREE.Vector3(0, 0, 0)}
-        onEnd={() => setRotationState(controlRef.current.getAzimuthalAngle())}
+        onEnd={() => setRotation(controlRef.current.getAzimuthalAngle())}
       />
       <group
         ref={groupRef}
