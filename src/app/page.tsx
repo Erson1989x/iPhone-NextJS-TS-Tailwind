@@ -3,6 +3,7 @@ import Highlights from "@/components/Highlights/Highlights";
 import { Navbar } from "@/components/Navbar/Navbar";
 import Model from "@/components/Model/Model";
 import Features from "@/components/Features/Features";
+import Chip from "@/components/Chip/Chip";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
     <Highlights />
     <Model />
     <Features />
+    <Chip />
     </main>
   )
 };
