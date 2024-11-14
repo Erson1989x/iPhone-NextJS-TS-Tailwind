@@ -75,6 +75,7 @@ const Model = () => {
               controlRef={cameraControlLarge}
               item={model}
               size={size}
+
             />
             <Canvas
               className="w-full h-full"
