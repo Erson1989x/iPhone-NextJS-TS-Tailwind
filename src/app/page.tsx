@@ -4,6 +4,7 @@ import { Navbar } from "@/components/Navbar/Navbar";
 import Model from "@/components/Model/Model";
 import Features from "@/components/Features/Features";
 import Chip from "@/components/Chip/Chip";
+import Footer from "@/components/Footer/Footer";
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
     <Model />
     <Features />
     <Chip />
+    <Footer />
     </main>
   )
 };
