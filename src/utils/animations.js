@@ -1,3 +1,4 @@
+
 const animateWithGsapTimeline = (
   timeline,
   rotationRef,
@@ -31,4 +32,4 @@ const animateWithGsapTimeline = (
   );
 };
 
-export default animateWithGsapTimeline;
+export default animateWithGsapTimeline
