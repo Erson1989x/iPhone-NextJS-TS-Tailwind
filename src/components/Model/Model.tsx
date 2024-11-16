@@ -11,7 +11,6 @@ import { View } from "@react-three/drei";
 import { models, sizes } from "@/constants";
 import animateWithGsapTimeline from "@/utils/animations";
 
-
 const Model = () => {
   const [size, setSize] = useState("small");
   const [model, setModel] = useState<(typeof models)[number]>({
@@ -20,6 +19,15 @@ const Model = () => {
     color: ["#8F8A81", "#ffe7b9", "#6f6c64"],
     img: yellowImg,
   });
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    if (canvasRef.current) {
+      const rootElement = document.getElementById("root");
+      if (rootElement) {
+      }
+    }
+  }, []);
 
   //camera control
   const cameraControlSmall = useRef(null);
@@ -37,13 +45,18 @@ const Model = () => {
   const tl = gsap.timeline();
 
   useEffect(() => {
-    if(size === 'large') {
-      animateWithGsapTimeline(tl, small, smallRotation, 'view1', 'view2', { transform: 'translateX(-100%)', duration: 2 });
+    if (size === "large") {
+      animateWithGsapTimeline(tl, small, smallRotation, "view1", "view2", {
+        transform: "translateX(-100%)",
+        duration: 2,
+      });
     }
-    if(size === 'small') {
-      animateWithGsapTimeline(tl, large, largeRotation, 'view2', 'view1', { transform: 'translateX(0)', duration: 2 });
+    if (size === "small") {
+      animateWithGsapTimeline(tl, large, largeRotation, "view2", "view1", {
+        transform: "translateX(0)",
+        duration: 2,
+      });
     }
-
   }, [size]);
 
   useGSAP(() => {
@@ -75,7 +88,6 @@ const Model = () => {
               controlRef={cameraControlLarge}
               item={model}
               size={size}
-
             />
             <Canvas
               className="w-full h-full"
@@ -88,7 +100,7 @@ const Model = () => {
                 overflow: "hidden",
                 pointerEvents: "none",
               }}
-              eventSource={document.getElementById("root")! as HTMLElement}
+              ref={canvasRef}
             >
               <View.Port />
             </Canvas>

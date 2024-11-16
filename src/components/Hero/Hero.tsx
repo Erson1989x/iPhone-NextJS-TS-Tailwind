@@ -2,13 +2,18 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { heroVideo, smallHeroVideo } from "@/utils";
-import { use, useState, useEffect } from "react";
+import {  useState, useEffect } from "react";
 import Link from "next/link";
 
 const Hero = () => {
-  const [videoSrc, setVideoSrc] = useState(
-    window.innerWidth < 768 ? smallHeroVideo : heroVideo
-  );
+  const [videoSrc, setVideoSrc] = useState<string | undefined>(heroVideo);
+
+  useEffect(() => {
+    if(typeof window !== "undefined") {
+      const windowWidth = window.innerWidth;
+      setVideoSrc(windowWidth < 768 ? smallHeroVideo : heroVideo);
+    }
+    }, []);
 
   const handleVideoSrcSet = () => {
     if (window.innerWidth < 768) {
