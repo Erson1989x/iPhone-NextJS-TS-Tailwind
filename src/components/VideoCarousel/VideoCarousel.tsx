@@ -47,14 +47,12 @@ const VideoCarousel = () => {
   }, [isEnd, videoId]);
 
   useEffect(() => {
-    if (loadedData.length > 3) {
-      if (!isPlaying) {
-        videoRef.current[videoId]?.pause();
-      } else {
-        startPlay && videoRef.current[videoId]?.play();
-      }
+    if (startPlay) {
+      videoRef.current[videoId]?.play();
+    } else if (!isPlaying) {
+      videoRef.current[videoId]?.pause();
     }
-  }, [startPlay, videoId, isPlaying, loadedData]);
+  }, [startPlay, videoId, isPlaying]);
 
   const handleLoadedMetaData = (i: number, e: any) => {
     setLoadedData((prevLoadedData) => [...prevLoadedData, i]);
